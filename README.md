@@ -1,6 +1,6 @@
-## [🙏 DONATE ](https://buymeacoffee.com/sagarsuri)
-
 # Github Gist Viewing Package.
+
+#### [🙏 DONATE ](https://buymeacoffee.com/sagarsuri) ❤️
 
 #### THIS PACKAGE YOU CAN USE IN YOUR REACT PROJECT
 
@@ -15,7 +15,7 @@
 ```Javascript
 
 import React from 'react';
-import GistViewer from 'vite-gist';
+import {GistViewer} from 'vite-gist';
 
 const App = () => (
   <GistViewer
