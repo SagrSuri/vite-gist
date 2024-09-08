@@ -1,6 +1,6 @@
 {
   "name": "vite-gist",
-  "version": "1.6.0",
+  "version": "1.8.0",
   "description": "A React component to view GitHub Gists with support for light and dark modes.",
   "main": "dist/vite-gist.cjs.js",
   "module": "dist/vite-gist.es.js",
@@ -20,6 +20,14 @@
   "keywords": [
     "react",
     "gist",
+    "react-gist",
+    "github gist",
+    "gist Viewer",
+    "react-embed-gist",
+    "gist-react",
+    "gist-simple",
+    "github-gist-database",
+    "github",
     "syntax-highlighter",
     "dark-mode",
     "light-mode"
@@ -35,7 +43,8 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.3.0",
-    "react-syntax-highlighter": "^15.5.0"
+    "react-syntax-highlighter": "^15.5.0",
+    "vitetoggle": "^0.1.5"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.1",

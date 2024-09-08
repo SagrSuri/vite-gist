@@ -7,18 +7,22 @@ import { MdDarkMode, MdLightMode, MdOutlineTextDecrease, MdOutlineTextIncrease }
 
 const GistViewer = ({
   gistId,
-  buttonClassName = '',
-  donateButtonClassName = '',
-  containerClassName = '',
+  buttonClassName = '', // Class for buttons
+  donateButtonClassName = '', // Class for donate button
+  containerClassName = '', // Class for the container
+  fontSizeButtonContainerClassName = '', // Class for font size buttons container
+  toggleButtonClassName = '', // Class for dark mode toggle button
+  loaderClassName = '', // Class for loading state
+  codeContainerClassName = '', // Class for the code block container
   themeStyle = lightSyntax, // Default to light theme
-  showLineNumbers = true, // Enable line numbers
-  fontSize = '1rem', // Default font size
-  codeBackgroundColor = '#f5f5f5' // Default background color for code blocks
+  showLineNumbers, // Controlled by user, no default
+  fontSize, // Controlled by user, no default
+  codeBackgroundColor, // Controlled by user, no default
 }) => {
   const [gistContent, setGistContent] = useState(null);
   const [error, setError] = useState(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [currentFontSize, setCurrentFontSize] = useState(fontSize);
+  const [currentFontSize, setCurrentFontSize] = useState(fontSize || '1rem');
 
   useEffect(() => {
     const fetchGist = async () => {
@@ -35,12 +39,10 @@ const GistViewer = ({
     fetchGist();
   }, [gistId]);
 
-  // Toggle dark mode based on user preference or system setting
   useEffect(() => {
     document.documentElement.classList.toggle('dark', isDarkMode);
   }, [isDarkMode]);
 
-  // Handle font size increase
   const increaseFontSize = () => {
     setCurrentFontSize(prevSize => {
       const newSize = parseFloat(prevSize) + 0.1;
@@ -48,7 +50,6 @@ const GistViewer = ({
     });
   };
 
-  // Handle font size decrease
   const decreaseFontSize = () => {
     setCurrentFontSize(prevSize => {
       const newSize = parseFloat(prevSize) - 0.1;
@@ -57,38 +58,54 @@ const GistViewer = ({
   };
 
   if (error) {
-    return <div className="text-red-500">{error}</div>;
+    return <div>{error}</div>;
   }
 
+// ******************* THIS IS FOR DONATE BUTTON**************//
+  const [isHovered, setIsHovered] = useState(false);
+  const handleMouseEnter = () => setIsHovered(true);
+  const handleMouseLeave = () => setIsHovered(false);
+ const styleDonatebtn={
+    // backgroundColor: 'lightblue',
+    color: 'darkblue',
+    display: 'flex',
+    justifyContent: 'center',
+    margin: '2px auto',
+    width: '100%',
+    padding: '5px 1rem',
+    borderRadius: '5px',
+    fontSize: '1rem',
+  }
+
+  const styleAncor={
+    backgroundColor: isHovered ? '#2af58f' : '#5bf5e5',
+    textAlign: 'center', display: 'block', width: '10rem' ,
+    transition: 'background-color 0.3s ease',
+    padding: '5px 10px' , borderRadius: '2rem'
+  }
+// ********************************** //
+
+
   return (
-    <div className={`flex flex-col gap-2 p-2 rounded-sm ${containerClassName}`}>
-     
-
+    <div className={containerClassName}>
       {/* Font Size Adjustment Buttons */}
-      <div className="m-1 flex justify-between px-5 gap-2">
-        <div className="flex justify-center gap-3">
-          <button
-            onClick={decreaseFontSize}
-            className={`${buttonClassName}`}
-          >
-            <MdOutlineTextDecrease className='text-3xl' />
+      <div className={fontSizeButtonContainerClassName}>
+        <div>
+          <button onClick={decreaseFontSize} className={buttonClassName}>
+            <MdOutlineTextDecrease />
           </button>
-
-          <button
-            onClick={increaseFontSize}
-            className={`${buttonClassName}`}
-          >
-            <MdOutlineTextIncrease className='text-3xl' />
+          <button onClick={increaseFontSize} className={buttonClassName}>
+            <MdOutlineTextIncrease />
           </button>
         </div>
-        
-         {/* Toggle Dark Mode Button */}
-      <button
-        onClick={() => setIsDarkMode(prevMode => !prevMode)}
-        className={`${buttonClassName}`}
-      >
-        {isDarkMode ? <MdLightMode className='text-3xl' /> : <MdDarkMode className='text-3xl text-black'/>}
-      </button>
+
+        {/* Toggle Dark Mode Button */}
+        <button
+          onClick={() => setIsDarkMode(prevMode => !prevMode)}
+          className={toggleButtonClassName}
+        >
+          {isDarkMode ? <MdLightMode /> : <MdDarkMode />}
+        </button>
       </div>
 
       {/* Display Gist Content */}
@@ -96,26 +113,26 @@ const GistViewer = ({
         <SyntaxHighlighter
           language="javascript"
           style={isDarkMode ? darkSyntax : lightSyntax}
-          showLineNumbers={showLineNumbers} // Enable line numbers
+          showLineNumbers={showLineNumbers} // Controlled by user
           customStyle={{
-            fontSize: currentFontSize, // Apply dynamic font size
-            backgroundColor: codeBackgroundColor // Apply background color
+            fontSize: currentFontSize, // Controlled by user
+            backgroundColor: codeBackgroundColor, // Controlled by user
           }}
-          className="p-4 rounded-md"
+          className={codeContainerClassName}
         >
           {gistContent}
         </SyntaxHighlighter>
       ) : (
-        <div>Loading Gist...</div>
+        <div className={loaderClassName}>Loading Gist...</div>
       )}
 
       {/* Donate Button */}
-      <div className="flex justify-center">
-        <a target='_blank' rel='noopener noreferrer' href="https://buymeacoffee.com/sagarsuri">
-          <button
-            className={`py-2 px-4 bg-green-400 dark:to-blue-600 rounded-md cursor-pointer transition-colors duration-300 font-serif `} /*{${donateButtonClassName}} */
-          >
-          Buy me a coffee
+      <div  style={styleDonatebtn}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave} >
+        <a target='_blank' style={styleAncor} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} rel='noopener noreferrer' href="https://buymeacoffee.com/sagarsuri">
+          <button style={{ textAlign: 'center' }} >
+            Please Donate {/* className={donateButtonClassName} */}
           </button>
         </a>
       </div>
