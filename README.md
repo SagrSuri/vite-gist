@@ -2,8 +2,8 @@
 
 #### [🙏 DONATE ](https://buymeacoffee.com/sagarsuri) ❤️
 
-![Alt text](https://github.com/SagrSuri/vitetoggle/raw/main/assets/white.png)
-![Alt text](https://github.com/SagrSuri/vitetoggle/raw/main/assets/dark.png)
+![Alt text](https://github.com/SagrSuri/vite-gist/raw/main/assets/white.png)
+![Alt text](https://github.com/SagrSuri/vite-gist/raw/main/assets/dark.png)
 
 #### THIS PACKAGE YOU CAN USE IN YOUR REACT PROJECT
 
