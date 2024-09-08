@@ -1,6 +1,6 @@
 {
   "name": "vite-gist",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "A React component to view GitHub Gists with support for light and dark modes.",
   "main": "dist/vite-gist.cjs.js",
   "module": "dist/vite-gist.es.js",

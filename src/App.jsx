@@ -21,7 +21,7 @@ const App = () => {
 
       <GistViewer
         gistId="ca470df8811bcb90a37ab2233861bb04"
-        containerClassName="bg-white p-1"
+        containerClassName="bg-white dark:bg-black p-1"
         buttonClassName=" text-black dark:text-white dark:bg-black mx-2 p-1 rounded-md"
         fontSizeButtonContainerClassName="flex justify-between px-8"
         toggleButtonClassName="text-xl dark:text-white dark:bg-black p-1 rounded-md"
