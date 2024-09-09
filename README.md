@@ -55,12 +55,12 @@ const App = () => (
 ```
 
 
-```javascript
+```bash
   1. You Must Be Apply in Your React Project tailwindcss then can you also handle the design
   2. Install react-icons
   2 Install react-syntax-highlighter
 ```
 
-```javascript
+```bash
   You Need TO Install Use Tailwind Css in your project then will work properly design 
 ```
